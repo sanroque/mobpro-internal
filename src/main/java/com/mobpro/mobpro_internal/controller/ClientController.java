@@ -22,13 +22,18 @@ public class ClientController {
     }
 
     @GetMapping("/{id}")
-    public ClientDTO getClient(@PathVariable Long id) {
+    public ResponseEntity<ClientDTO> getClient(@PathVariable Long id) {
         return clientService.getClient(id);
     }
 
     @PostMapping
     public void createClient(@RequestBody ClientDTO clientDTO) {
         clientService.addClient(clientDTO);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ClientDTO> updateClient(@RequestBody ClientDTO data){
+        return clientService.updateClient(data);
     }
 
     @DeleteMapping("/{id}")

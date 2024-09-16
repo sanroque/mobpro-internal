@@ -1,12 +1,11 @@
 package com.mobpro.mobpro_internal.service;
 
 import com.mobpro.mobpro_internal.dto.UserDTO;
-import com.mobpro.mobpro_internal.entity.User;
+import com.mobpro.mobpro_internal.entity.user.User;
 import com.mobpro.mobpro_internal.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,7 +26,6 @@ public class UserService {
 
     public void addUser(UserDTO userDTO) {
         User user = new User(userDTO);
-        assert user.getId() != null;
         userRepository.save(user);
     }
 

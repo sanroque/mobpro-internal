@@ -1,9 +1,8 @@
-package com.mobpro.mobpro_internal.entity;
+package com.mobpro.mobpro_internal.entity.user;
 
 import com.mobpro.mobpro_internal.dto.UserDTO;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.proxy.HibernateProxy;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -11,7 +10,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
 
 @Table(name = "mp_user")
 @Entity(name = "user")

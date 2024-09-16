@@ -4,9 +4,9 @@ package com.mobpro.mobpro_internal.service;
 import com.mobpro.mobpro_internal.dto.ClientDTO;
 import com.mobpro.mobpro_internal.entity.Client;
 import com.mobpro.mobpro_internal.repository.ClientRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -23,14 +23,23 @@ public class ClientService {
         return clients.stream().map(ClientDTO::new).toList();
     }
 
-    public ClientDTO getClient(Long id) {
-        Client client = clientRepository.findById(id).orElse(null);
-        return new ClientDTO(client);
+    public ResponseEntity<ClientDTO> getClient(Long id) {
+        return clientRepository.findById(id)
+                .map(ClientDTO::new)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
-    public void addClient(ClientDTO dto) {
+    public ResponseEntity<?> addClient(ClientDTO dto) {
         Client client = new Client(dto);
         clientRepository.save(client);
+        return ResponseEntity.ok().build();
+    }
+
+    public ResponseEntity<ClientDTO> updateClient(ClientDTO data){
+        Client client = new Client(data);
+        clientRepository.save(client);
+        return ResponseEntity.ok().body(new ClientDTO(client));
     }
 
 

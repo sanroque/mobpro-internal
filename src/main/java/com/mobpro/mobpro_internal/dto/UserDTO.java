@@ -1,7 +1,7 @@
 package com.mobpro.mobpro_internal.dto;
 
-import com.mobpro.mobpro_internal.entity.User;
-import com.mobpro.mobpro_internal.entity.UserRole;
+import com.mobpro.mobpro_internal.entity.user.User;
+import com.mobpro.mobpro_internal.entity.user.UserRole;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
 

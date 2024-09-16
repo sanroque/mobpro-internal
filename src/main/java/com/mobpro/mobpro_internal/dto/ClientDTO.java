@@ -3,6 +3,7 @@ package com.mobpro.mobpro_internal.dto;
 import com.mobpro.mobpro_internal.entity.Client;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
+import org.springframework.util.Assert;
 
 @Getter
 @Setter
@@ -35,5 +36,7 @@ public class ClientDTO {
 
     public ClientDTO(Client client) {
         BeanUtils.copyProperties(client, this);
+        Assert.notNull(client, "Source must not be null");
+        Assert.notNull(this, "Target must not be null");
     }
 }

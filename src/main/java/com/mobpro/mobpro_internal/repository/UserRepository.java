@@ -1,6 +1,6 @@
 package com.mobpro.mobpro_internal.repository;
 
-import com.mobpro.mobpro_internal.entity.User;
+import com.mobpro.mobpro_internal.entity.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 

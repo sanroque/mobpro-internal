@@ -1,4 +1,4 @@
-package com.mobpro.mobpro_internal.entity;
+package com.mobpro.mobpro_internal.entity.user;
 
 public enum UserRole {
 
