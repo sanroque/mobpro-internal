@@ -3,22 +3,19 @@ package com.mobpro.mobpro_internal.controller;
 
 import com.mobpro.mobpro_internal.dto.ReportDTO;
 import com.mobpro.mobpro_internal.service.ReportService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/reports")
 public class ReportController {
 
-    private final ReportService reportService;
-
-    public ReportController(ReportService reportService) {
-        this.reportService = reportService;
-    }
+    @Autowired
+    private ReportService reportService;
 
     @GetMapping
     public List<ReportDTO> getAll(){
@@ -27,7 +24,17 @@ public class ReportController {
     }
 
     @PostMapping
-    public void add(ReportDTO data){
+    public void add(@RequestBody ReportDTO data){
         reportService.add(data);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> update(@RequestBody ReportDTO data){
+        return reportService.update(data);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable UUID id){
+        return reportService.delete(id);
     }
 }

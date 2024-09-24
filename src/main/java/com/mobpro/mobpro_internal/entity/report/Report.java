@@ -21,16 +21,14 @@ public class Report {
     private UUID id;
     private String description;
     private String missing;
-    private boolean cctv;
-    private boolean ca;
-    private boolean sdg;
-    private boolean sadi;
-    private boolean sadir;
+    private Integer cctv; // Changed from int to Integer
+    private Integer ca;    // Changed from int to Integer
+    private Integer sdg;   // Changed from int to Integer
+    private Integer sadi;  // Changed from int to Integer
+    private Integer sadir; // Changed from int to Integer
     private String other;
 
-    public Report(ReportDTO data){
-
+    public Report(ReportDTO data) {
         BeanUtils.copyProperties(data, this);
     }
-
 }

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ReportService {
@@ -23,8 +24,29 @@ public class ReportService {
     public ResponseEntity<String> add(ReportDTO data){
         Report report = new Report(data);
         reportRepository.save(report);
-        return ResponseEntity.ok("User created sucessfully");
+        return ResponseEntity.ok("Report added");
     }
 
+    public ResponseEntity<ReportDTO> update(ReportDTO data){
+        Report report = reportRepository.getById(data.getId());
+
+        if(report != null){
+            Report updatedReport = new Report(data);
+            reportRepository.save(updatedReport);
+            return ResponseEntity.ok(new ReportDTO(updatedReport));
+        }
+
+        return null;
+    }
+
+    public ResponseEntity<?> delete(UUID id){
+        Report report = reportRepository.getById(id);
+        if(report != null){
+            reportRepository.deleteById(id);
+            return ResponseEntity.accepted().build();
+        }
+
+        return null;
+    }
 
 }

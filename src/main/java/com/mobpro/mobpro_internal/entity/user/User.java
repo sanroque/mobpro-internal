@@ -24,14 +24,21 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String login;
+    @Getter
+    private String name;
+    @Getter
+    private String surname;
     private String password;
     private UserRole role;
 
-    public User(String login, String password, UserRole role) {
+    public User(String login, String name, String surname, String password, UserRole role) {
         this.login = login;
+        this.name = name;
+        this.surname = surname;
         this.password = password;
         this.role = role;
     }
+
 
     public User(UserDTO dto) {
         BeanUtils.copyProperties(dto, this);
