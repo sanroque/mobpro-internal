@@ -1,6 +1,7 @@
 package com.mobpro.mobpro_internal.security;
 
 import com.mobpro.mobpro_internal.security.jwt.SecurityFilter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,12 +16,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+@RequiredArgsConstructor(onConstructor_ = @__(@Autowired))
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Autowired
-    private SecurityFilter securityFilter;
+    private final SecurityFilter securityFilter;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
@@ -32,6 +33,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/works/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/materials/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/technicians/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/clients/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
